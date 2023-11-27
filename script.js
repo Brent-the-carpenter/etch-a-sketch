@@ -1,16 +1,20 @@
-const boxContainer = document.querySelector('.boxContainer');
+const gridSize = 600;
+let rows = 16;
+let columns = 16;
+
+const sketchPad = document.querySelector('.sketchpad');
+sketchPad.style.width = `${gridSize}px`;
+sketchPad.style.height = `${gridSize}px`;
 
 
+function makeGridCells(){
+  for (let i = 0; i < (rows * columns); i++ ){
+    const gridCell = document.createElement('div');
+    gridCell.classList.add('cell')
+    gridCell.style.width = `${(gridSize / rows) -2}px`;
+    gridCell.style.height = `${(gridSize / columns) -2}px`;
 
-function makerows (rows , columns){
-  boxContainer.style.setProperty("--grid-rows", rows);
-  boxContainer.style.setProperty("--grid-columns", columns);
-
-  for (i = 0 ; i< (rows * columns); i++){
-    let square = document.createElement('div');
-    square.innerText = (i+1);
-    boxContainer.appendChild(square).className = "grid-item";
+    sketchPad.appendChild(gridCell);
   }
-
-}
-makerows(16,16);
+};
+makeGridCells();
