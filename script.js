@@ -1,37 +1,55 @@
 const gridSize = 600;
-let rows = 16;
-let columns = 16;
+let squaresPerSide = 16;
 
-const pen = document.querySelector(".pen")
+const resetButton = document.querySelector('#reset');
+
 
 const sketchPad = document.querySelector('.sketchpad');
-sketchPad.style.width = `${gridSize}px`;
-sketchPad.style.height = `${gridSize}px`;
+    sketchPad.style.width = sketchPad.style.height = `${gridSize}px`;
+
+const sliderContainer = document.querySelector("#sliderContainer"); // container
+const sliderInput = document.querySelector('#sliderinput'); // input 
+
+const sliderValue = document.querySelector('#sliderValue'); // p elemennt
+    sliderValue.textContent = `${sliderInput.value} x ${sliderInput.value} resolution`
+   
 
 
     function changeBackgroundColor() {
       this.style.backgroundColor = "black";
     }
 
-    function makeGridCells(){
-      for (let i = 0; i < (rows * columns); i++ ){
-        const gridCell = document.createElement('div');
-        gridCell.classList.add('cell')
-        gridCell.style.width = `${(gridSize / rows) -2}px`;
-        gridCell.style.height = `${(gridSize / columns) -2}px`;
+    function makeGridCells(squaresPerSide){
+      const widthOrHeight = `${(gridSize / squaresPerSide) -2}px  `;
+      const numberOfSquares = (squaresPerSide * squaresPerSide) ;
 
-        sketchPad.appendChild(gridCell);
+          for (let i = 0; i < numberOfSquares; i++ ){
+            const gridCell = document.createElement('div');
+            gridCell.classList.add('cell')
+            gridCell.style.width = gridCell.style.height = widthOrHeight;
 
-        
-        gridCell.addEventListener("mouseover" , changeBackgroundColor)
-          
-        
-      }
-      
+            sketchPad.appendChild(gridCell);
+            gridCell.addEventListener("mouseover" , changeBackgroundColor)
+          }
+       }
+
+    makeGridCells(sliderInput.value);
+    
+    function removeGridCells(){
+        while (sketchPad.firstChild){
+          sketchPad.removeChild(sketchPad.firstChild);
+        }
+         makeGridCells(sliderInput.value);
+     }
+
+    resetButton.addEventListener('click', removeGridCells)
+    
+    sliderInput.addEventListener('input', updateSlider)
+
+    function updateSlider () {
+        sliderValue.textContent = `${sliderInput.value} x ${sliderInput.value} resolution`;
+        removeGridCells();
+      console.log(sliderValue); // test so see if event fires remove later
     }
-
-    
-
-    
-
-makeGridCells();
+   
+//sliderInput.addEventListener('input', updateSlider)

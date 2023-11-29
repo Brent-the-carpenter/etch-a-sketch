@@ -16,3 +16,20 @@ body{
     background-color: antiquewhite;
     border: 1px solid black;
 }
+.toolbar{
+    background-color: white;
+    display: flex;
+    justify-content: center;
+}
+.reset{
+    width: 100px;
+}
+.slidecontainer{
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
+input{
+    font-size: 16px;
+}
