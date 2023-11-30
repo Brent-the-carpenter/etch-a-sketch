@@ -44,7 +44,7 @@ const chosenColor = document.querySelector('#colortext');
             gridCell.addEventListener('mousedown' , changeBackgroundColor)
             
           }
-       }
+        }
 
     makeGridCells(sliderInput.value);
     
