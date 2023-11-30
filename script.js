@@ -64,4 +64,4 @@ const chosenColor = document.querySelector('#colortext');
         removeGridCells();
       console.log(sliderValue); // test so see if event fires remove later
     }
-   
+   //
