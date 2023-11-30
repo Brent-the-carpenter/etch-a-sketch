@@ -9,11 +9,17 @@
     <link rel="stylesheet" href="style.css" >
 </head>
 <body>
+    <h1>Brent's Etch-a-sketch</h1>
     <div class="sketchpad"></div>
     <div class="toolcontainer">
         <div class="sliderContainer">
             <input type="range" min="1" max="100" value="16" class="slider" id="sliderinput">
             <p id ="sliderValue">  </p>
+        </div>
+        <div class="color">
+          
+            <input type="color" id = "colorInput">
+            <div id = 'colortext'>Pick a color !</div>
         </div>
     <div class="toolbar">
         <button id="reset">  Click to Reset </button>

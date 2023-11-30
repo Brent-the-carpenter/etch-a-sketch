@@ -13,10 +13,21 @@ const sliderInput = document.querySelector('#sliderinput'); // input
 const sliderValue = document.querySelector('#sliderValue'); // p elemennt
     sliderValue.textContent = `${sliderInput.value} x ${sliderInput.value} resolution`
    
+const colorInput = document.querySelector('#colorInput');
+const chosenColor = document.querySelector('#colortext');
+  chosenColor.textContent = `Pick a color to draw with!`;
 
+  let mouseDown = false ;
+  document.body.onmousedown = () => (mouseDown = true)
+  document.body.onmouseup = () => (mouseDown = false)
 
-    function changeBackgroundColor() {
-      this.style.backgroundColor = "black";
+    function changeBackgroundColor(e) {
+      if (e.type === 'mouseover' && mouseDown){
+      this.style.backgroundColor = colorInput.value;
+      this.style.border = `1px solid ${colorInput.value}`
+      } else{
+
+      }
     }
 
     function makeGridCells(squaresPerSide){
@@ -29,7 +40,9 @@ const sliderValue = document.querySelector('#sliderValue'); // p elemennt
             gridCell.style.width = gridCell.style.height = widthOrHeight;
 
             sketchPad.appendChild(gridCell);
-            gridCell.addEventListener("mouseover" , changeBackgroundColor)
+            gridCell.addEventListener('mouseover' , changeBackgroundColor)
+            gridCell.addEventListener('mousedown' , changeBackgroundColor)
+            
           }
        }
 
@@ -52,4 +65,3 @@ const sliderValue = document.querySelector('#sliderValue'); // p elemennt
       console.log(sliderValue); // test so see if event fires remove later
     }
    
-//sliderInput.addEventListener('input', updateSlider)
